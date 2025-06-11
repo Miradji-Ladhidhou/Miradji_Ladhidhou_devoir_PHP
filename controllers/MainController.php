@@ -5,16 +5,31 @@ require_once("./models/trajets.php");
 
 
 
-class MainController {
+class MainController
+{
 
    public $agences;
 
-   public function __construct() {
+   public function __construct()
+   {
       $this->agences = new Agences();
    }
 
 
-   public function homePage() {
+   public function homePage()
+   {
+
+      // code pour tester la session
+      
+      // session_start();
+      // unset($_SESSION['user']); 
+
+      // $_SESSION['user'] = [
+      //    'prenom' => 'Jean',
+      //    'nom' => 'Dupont',
+      //    'est_admin' => false
+      // ];
+
 
       $agences = $this->agences->getAllAgences();
 
@@ -30,9 +45,10 @@ class MainController {
    }
 
 
-     public function errorPage($message) {
+   public function errorPage($message)
+   {
 
-      
+
 
       $datas_page = [
          'views' => "./views/pages/errorPage.php",

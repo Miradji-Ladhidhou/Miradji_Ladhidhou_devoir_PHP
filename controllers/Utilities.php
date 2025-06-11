@@ -1,8 +1,10 @@
 <?php
 
-class Utilities {
+class Utilities
+{
 
-    public static function renderPage($datas_page){
+    public static function renderPage($datas_page)
+    {
 
         extract($datas_page);
         ob_start();
@@ -11,7 +13,8 @@ class Utilities {
         require_once($layout);
     }
 
-    public static function showArray($array){
+    public static function showArray($array)
+    {
         echo "<pre>";
         print_r($array);
         echo "</pre>";
