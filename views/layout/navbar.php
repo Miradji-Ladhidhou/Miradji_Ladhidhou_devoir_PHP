@@ -13,7 +13,7 @@
         <?php if (!isset($_SESSION['user'])): ?>
           <!-- User non connecté -->
           <li class="nav-item">
-            <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>login">Connexion</a>
+            <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>index.php?page=login">Connexion</a>
           </li>
 
         <?php else: ?>
@@ -23,6 +23,7 @@
           </li>
 
           <?php if (!empty($_SESSION['user']['est_admin'])): ?>
+
             <!-- User admin -->
             <li class="nav-item">
               <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>admin/users">Utilisateurs</a>
@@ -34,6 +35,7 @@
               <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>admin/trajets">Trajets</a>
             </li>
           <?php else: ?>
+            
             <!-- User connecté -->
             <li class="nav-item">
               <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>trajets/create">Création trajet</a>

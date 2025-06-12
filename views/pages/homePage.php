@@ -1,3 +1,9 @@
+    
+ <?php
+session_start();
+?>
+   
+    
     <h1>Bienvenue sur la page d'accueil !</h1>
 
 <?php
@@ -33,7 +39,7 @@ $trajetsModel = new TrajetsModel();
                         <span class="text-muted">Connectez-vous</span>
                     <?php else: ?>
                         <a href="details.php?id=<?= $trajet['id_trajets'] ?>">Détail</a>
-                        <?php if ($_SESSION['user']['id_users'] == $trajet['id_users'] || $_SESSION['user']['est_admin']): ?>
+                        <?php if ($_SESSION['user']['id'] == $trajet['id_users'] || $_SESSION['user']['est_admin']): ?>
                             | <a href="edit.php?id=<?= $trajet['id_trajets'] ?>">Modifier</a>
                         <?php endif; ?>
                         <?php if ($_SESSION['user']['est_admin']): ?>

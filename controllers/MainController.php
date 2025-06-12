@@ -9,7 +9,6 @@ class MainController
 
    public function __construct()
    {
-      // session_start(); // supprimé comme demandé
       $this->trajets = new TrajetsModel();
    }
 
@@ -23,6 +22,18 @@ class MainController
          'title' => "Page d'accueil",
          'description' => "Bienvenue sur la page d'accueil de notre site web.",
          'agences' => $agences
+      ];
+
+      Utilities::renderPage($datas_page);
+   }
+
+   public function auth()
+   {
+      $datas_page = [
+         'views' => "./views/pages/auth.php",
+         'layout' => "./views/layout/commun.php",
+         'title' => "Connexion",
+         'description' => "Page de connexion utilisateur",
       ];
 
       Utilities::renderPage($datas_page);

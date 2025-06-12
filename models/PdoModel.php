@@ -3,20 +3,21 @@ require_once('./config/config.php');
 
 abstract class PdoModel
 {
-    public static $pdo;
+    protected static $pdo;
 
-    protected function setDB()
+    public static function getPdo()
     {
         if (self::$pdo === null) {
-            self::$pdo = new PDO(
-
-                "mysql:host=" . mysql .
-                    ";dbname=" . dbname,
-                user,
-                password,
-                [PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION]
-            );
-            self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            try {
+                self::$pdo = new PDO(
+                    "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8",
+                    DB_USER,
+                    DB_PASSWORD,
+                    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+                );
+            } catch (PDOException $e) {
+                die("Erreur de connexion à la base de données : " . $e->getMessage());
+            }
         }
 
         return self::$pdo;

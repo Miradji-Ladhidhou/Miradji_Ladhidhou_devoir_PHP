@@ -16,7 +16,7 @@ class TrajetsModel extends PdoModel
             LEFT JOIN agences aa ON t.id_agences_arrivee = aa.id_agences
             ORDER BY t.date_heure_depart ASC";
 
-        $stmt = $this->setDB()->prepare($sql);
+        $stmt = $this->getPdo()->prepare($sql);
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
