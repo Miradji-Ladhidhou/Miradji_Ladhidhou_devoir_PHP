@@ -1,37 +1,21 @@
 <?php
 
 require_once("./controllers/Utilities.php");
-require_once("./models/trajets.php");
-
-
+require_once("./models/trajetsModel.php");
 
 class MainController
 {
-
-   public $agences;
+   public $trajets;
 
    public function __construct()
    {
-      $this->agences = new Agences();
+      // session_start(); // supprimé comme demandé
+      $this->trajets = new TrajetsModel();
    }
-
 
    public function homePage()
    {
-
-      // code pour tester la session
-      
-      // session_start();
-      // unset($_SESSION['user']); 
-
-      // $_SESSION['user'] = [
-      //    'prenom' => 'Jean',
-      //    'nom' => 'Dupont',
-      //    'est_admin' => false
-      // ];
-
-
-      $agences = $this->agences->getAllAgences();
+      $agences = $this->trajets->getAlltrajets();
 
       $datas_page = [
          'views' => "./views/pages/homePage.php",
@@ -44,19 +28,14 @@ class MainController
       Utilities::renderPage($datas_page);
    }
 
-
    public function errorPage($message)
    {
-
-
-
       $datas_page = [
          'views' => "./views/pages/errorPage.php",
          'layout' => "./views/layout/commun.php",
-         'title' => "erreur 404",
-         'description' => "on est perdu, on ne trouve pas la page",
+         'title' => "Erreur 404",
+         'description' => "On est perdu, on ne trouve pas la page",
          'message' => $message,
-
       ];
 
       Utilities::renderPage($datas_page);

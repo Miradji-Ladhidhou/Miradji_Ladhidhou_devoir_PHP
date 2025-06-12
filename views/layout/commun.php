@@ -10,15 +10,20 @@
     <title><?= $title ?></title>
 </head>
 
-<body classe='d-flex flex-column min-vh-100'>
+<body class="d-flex flex-column min-vh-100">
+
 
     <?php require_once('./views/layout/navbar.php') ?>
 
-    <div class="flex-grow-1">
-        <?= $content ?>
-    </div>
+    <main class="flex-fill">
+        <div class="container mt-4">
+            <?= $content ?>
+        </div>
+    </main>
 
-    <?php require_once('./views/layout/footer.php') ?>
+    <footer class="border-top border-black p-4 mt-auto">
+        <?php require_once('./views/layout/footer.php') ?>
+    </footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js">

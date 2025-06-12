@@ -11,7 +11,7 @@
       <ul class="navbar-nav ms-auto">
 
         <?php if (!isset($_SESSION['user'])): ?>
-          <!-- Utilisateur non connecté -->
+          <!-- User non connecté -->
           <li class="nav-item">
             <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>login">Connexion</a>
           </li>
@@ -19,11 +19,11 @@
         <?php else: ?>
           <!-- Affiche nom/prénom -->
           <li class="nav-item nav-link disabled">
-            <?= htmlspecialchars($_SESSION['user']['prenom'] . ' ' . $_SESSION['user']['nom']) ?>
+            Bonjour <?= htmlspecialchars($_SESSION['user']['prenom'] . ' ' . $_SESSION['user']['nom']) ?>
           </li>
 
           <?php if (!empty($_SESSION['user']['est_admin'])): ?>
-            <!-- ADMIN UNIQUEMENT -->
+            <!-- User admin -->
             <li class="nav-item">
               <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>admin/users">Utilisateurs</a>
             </li>
@@ -34,13 +34,13 @@
               <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>admin/trajets">Trajets</a>
             </li>
           <?php else: ?>
-            <!-- UTILISATEUR NORMAL UNIQUEMENT -->
+            <!-- User connecté -->
             <li class="nav-item">
               <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>trajets/create">Création trajet</a>
             </li>
           <?php endif; ?>
 
-          <!-- Déconnexion pour tous les utilisateurs connectés -->
+          <!-- Déconnexion pour tous les users connectés -->
           <li class="nav-item">
             <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>logout">Déconnexion</a>
           </li>
