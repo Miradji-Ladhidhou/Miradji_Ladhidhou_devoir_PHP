@@ -4,9 +4,11 @@ define('ROOT', str_replace('index.php', '', (isset($_SERVER['HTTPS']) ? 'https' 
 
 require_once 'controllers/MainController.php';
 require_once 'controllers/AuthController.php';
+require_once 'controllers/UtilisateurController.php';
 
 $mainController = new MainController();
 $authController = new AuthController();
+$utilisateurController = new UtilisateurController();
 $uri = trim($_SERVER['REQUEST_URI'], '/');
 
 
@@ -21,16 +23,17 @@ try {
     // Routeur principal
     switch ($page) {
 
-        // Routes pour les pages principales
+        // Route pour la page d'accueil
         case 'accueil':
             $mainController->homePage();
             break;
-        // Routes pour les pages d'authentification
+
+        // Route pour la page d'authentification
         case 'login':
             $authController->auth();
             break;
 
-        // Routes pour les processus d'authentification
+        // Route pour le processus d'authentification
         case 'loginProcess':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $authController->loginProcess();
@@ -39,12 +42,17 @@ try {
             }
             break;
 
-        // Routes pour la déconnexion
+        // Route pour la déconnexion
         case 'logout':
             $authController->logout();
             break;
 
-        // Routes pour les pages d'erreur
+        // Route pour la page utilisateur
+        case 'utilisateur':
+            $utilisateurController->utilisateurPage();
+            break;
+
+        // Route pour la page d'erreur
         default:
             throw new Exception("Page non trouvée");
     }

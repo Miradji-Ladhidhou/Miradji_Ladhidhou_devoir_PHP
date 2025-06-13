@@ -26,7 +26,7 @@
 
             <!-- User admin -->
             <li class="nav-item">
-              <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>admin/users">Utilisateurs</a>
+              <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>index.php?page=utilisateur">Utilisateurs</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>admin/agences">Agences</a>
