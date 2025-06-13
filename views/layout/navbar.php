@@ -32,7 +32,7 @@
               <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>admin/agences">Agences</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>admin/trajets">Trajets</a>
+              <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>index.php?page=accueil">Trajets</a>
             </li>
           <?php else: ?>
             
