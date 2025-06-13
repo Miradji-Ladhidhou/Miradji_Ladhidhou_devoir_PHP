@@ -5,10 +5,12 @@ define('ROOT', str_replace('index.php', '', (isset($_SERVER['HTTPS']) ? 'https' 
 require_once 'controllers/MainController.php';
 require_once 'controllers/AuthController.php';
 require_once 'controllers/UtilisateurController.php';
+require_once 'controllers/AgenceController.php';
 
 $mainController = new MainController();
 $authController = new AuthController();
 $utilisateurController = new UtilisateurController();
+$AgenceController = new AgenceController();
 $uri = trim($_SERVER['REQUEST_URI'], '/');
 
 
@@ -50,6 +52,11 @@ try {
         // Route pour la page utilisateur
         case 'utilisateur':
             $utilisateurController->utilisateurPage();
+            break;
+
+        // Route pour la page des agences
+        case 'agence':
+            $AgenceController->agencePage();
             break;
 
         // Route pour la page d'erreur

@@ -53,7 +53,7 @@ class AuthController
 
     // Authentification réussie : sauvegarder les infos utilisateur en session
     $_SESSION['user'] = [
-        'id' => $user['id'],
+        'id' => $user['id_users'],
         'prenom' => $user['prenom'],
         'nom' => $user['nom'],
         'est_admin' => $user['est_admin'],
