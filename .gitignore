@@ -20,3 +20,5 @@ uploads/
 sessions/
 
 /vendor/
+
+composer.lock
