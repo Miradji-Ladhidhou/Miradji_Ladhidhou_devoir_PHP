@@ -17,6 +17,9 @@
     <?php
     require_once './models/trajetsModel.php';
     $trajetsModel = new TrajetsModel();
+    $trajets = isset($_SESSION['user'])
+    ? $trajetsModel->getAlltrajets()
+    : $trajetsModel->getTrajetsDisponibles();
     ?>
 
     <table class="table table-bordered table-striped">
@@ -33,7 +36,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($trajetsModel->getAlltrajets() as $trajet): ?>
+            <?php foreach ($trajets as $trajet): ?>
                 <tr>
                     <td><?= htmlspecialchars($trajet['agence_depart']) ?></td>
                     <td><?= date('d/m/Y', strtotime($trajet['date_heure_depart'])) ?></td>

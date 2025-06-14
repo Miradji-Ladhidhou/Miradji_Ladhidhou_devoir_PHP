@@ -21,4 +21,22 @@ class TrajetsModel extends PdoModel
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getTrajetsDisponibles()
+{
+    $pdo = self::getPdo();
+    $stmt = $pdo->query("
+        SELECT 
+            trajets.*, 
+            a1.ville AS agence_depart, 
+            a2.ville AS agence_arrivee
+        FROM trajets
+        JOIN agences a1 ON trajets.id_agences_depart = a1.id_agences
+        JOIN agences a2 ON trajets.id_agences_arrivee = a2.id_agences
+        WHERE trajets.places_disponibles > 0
+    ");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 }
