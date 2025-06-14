@@ -1,5 +1,7 @@
 <?php
 session_start();
+use Models\AgencesModel;
+use Models\TrajetsModel;
 
 if (!isset($_SESSION['user'])) {
     header('Location: index.php?page=login');

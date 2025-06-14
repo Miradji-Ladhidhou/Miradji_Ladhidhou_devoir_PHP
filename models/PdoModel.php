@@ -1,5 +1,9 @@
 <?php
+namespace Models;
+
 require_once('./config/config.php');
+use PDO;
+use PDOException;
 
 abstract class PdoModel
 {

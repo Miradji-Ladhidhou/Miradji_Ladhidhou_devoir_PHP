@@ -1,6 +1,9 @@
 <?php
+namespace Models;
+
 require_once('./config/config.php');
-require_once('./models/PdoModel.php');
+use Models\PdoModel;
+use PDO;
 
 class AgencesModel extends PdoModel
 {

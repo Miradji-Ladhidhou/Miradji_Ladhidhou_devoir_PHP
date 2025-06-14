@@ -1,5 +1,8 @@
 <?php
-require_once './models/PdoModel.php';
+namespace Models;
+
+use Models\PdoModel;
+use PDO;
 
 class UserModel extends PdoModel
 {

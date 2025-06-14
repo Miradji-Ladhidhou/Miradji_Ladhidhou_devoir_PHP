@@ -1,7 +1,8 @@
 <?php
+namespace Controllers;
 
-require_once("./controllers/Utilities.php");
-require_once("./models/UtilisateursModel.php");
+use Controllers\Utilities;
+use Models\UtilisateursModel;
 
 class UtilisateurController
 {

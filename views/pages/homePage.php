@@ -1,6 +1,7 @@
     <?php
     session_start();
     $isAdmin = isset($_SESSION['user']) && !empty($_SESSION['user']['est_admin']);
+    use Models\TrajetsModel;
     ?>
 
 

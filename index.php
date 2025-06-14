@@ -1,12 +1,14 @@
 <?php
+require_once './vendor/autoload.php';
 
 define('ROOT', str_replace('index.php', '', (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']));
 
-require_once 'controllers/MainController.php';
-require_once 'controllers/AuthController.php';
-require_once 'controllers/UtilisateurController.php';
-require_once 'controllers/AgenceController.php';
-require_once 'controllers/TrajetController.php';
+use Controllers\MainController;
+use Controllers\AuthController;
+use Controllers\UtilisateurController;
+use Controllers\AgenceController;
+use Controllers\TrajetController;
+
 
 $mainController = new MainController();
 $authController = new AuthController();

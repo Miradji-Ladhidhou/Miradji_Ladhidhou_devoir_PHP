@@ -1,7 +1,9 @@
 <?php
+namespace Controllers;
 
-require_once("./controllers/Utilities.php");
-require_once("./models/AgencesModel.php");
+use Models\AgencesModel;
+use Controllers\Utilities;
+
 
 class AgenceController
 {

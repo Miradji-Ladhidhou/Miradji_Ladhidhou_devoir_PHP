@@ -1,5 +1,7 @@
 <?php
-require_once './models/UserModel.php';
+namespace Controllers;
+
+use Models\UserModel;
 
 class AuthController
 {

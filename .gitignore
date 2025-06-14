@@ -18,3 +18,5 @@ config/config.php
 cache/
 uploads/
 sessions/
+
+/vendor/

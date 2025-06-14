@@ -1,7 +1,8 @@
 <?php
+namespace Controllers;
 
-require_once("./controllers/Utilities.php");
-require_once("./models/TrajetsModel.php");
+use Controllers\Utilities;
+use Models\TrajetsModel;
 
 class TrajetController
 {
