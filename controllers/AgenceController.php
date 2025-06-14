@@ -36,6 +36,4 @@ class AgenceController
 
       Utilities::renderPage($datas_page);
    }
-
-   
 }

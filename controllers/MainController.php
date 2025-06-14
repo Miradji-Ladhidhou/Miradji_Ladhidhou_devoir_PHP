@@ -1,7 +1,7 @@
 <?php
 
 require_once("./controllers/Utilities.php");
-require_once("./models/trajetsModel.php");
+require_once("./models/TrajetsModel.php");
 
 class MainController
 {

@@ -37,5 +37,15 @@ class TrajetController
       Utilities::renderPage($datas_page);
    }
 
-   
+   public function createTrajetPage()
+   {
+      $datas_page = [
+         'views' => "./views/pages/createTrajetPage.php",
+         'layout' => "./views/layout/commun.php",
+         'title' => "Créer un trajet",
+         'description' => "Bienvenue sur la page de création de trajet.",
+      ];
+
+      Utilities::renderPage($datas_page);
+   }
 }

@@ -7,8 +7,8 @@ class AgencesModel extends PdoModel
 
     public function getAllagences()
     {
-        $sql = "SELECT * FROM agences". 
-               " ORDER BY ville ASC";
+        $sql = "SELECT * FROM agences" .
+            " ORDER BY ville ASC";
 
         $stmt = $this->getPdo()->prepare($sql);
         $stmt->execute();

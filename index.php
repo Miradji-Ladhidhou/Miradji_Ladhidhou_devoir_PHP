@@ -6,11 +6,13 @@ require_once 'controllers/MainController.php';
 require_once 'controllers/AuthController.php';
 require_once 'controllers/UtilisateurController.php';
 require_once 'controllers/AgenceController.php';
+require_once 'controllers/TrajetController.php';
 
 $mainController = new MainController();
 $authController = new AuthController();
 $utilisateurController = new UtilisateurController();
 $AgenceController = new AgenceController();
+$TrajetController = new TrajetController();
 $uri = trim($_SERVER['REQUEST_URI'], '/');
 
 
@@ -57,6 +59,11 @@ try {
         // Route pour la page des agences
         case 'agence':
             $AgenceController->agencePage();
+            break;
+
+        // Route pour la création de trajet
+        case 'trajet':
+            $TrajetController->createTrajetPage();
             break;
 
         // Route pour la page d'erreur

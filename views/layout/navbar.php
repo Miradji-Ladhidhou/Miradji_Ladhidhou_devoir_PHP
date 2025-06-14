@@ -35,10 +35,13 @@
               <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>index.php?page=accueil">Trajets</a>
             </li>
           <?php else: ?>
-            
+
             <!-- User connecté -->
             <li class="nav-item">
-              <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>trajets/create">Création trajet</a>
+              <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>index.php?page=trajet">Création trajet</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>index.php?page=accueil">Trajets</a>
             </li>
           <?php endif; ?>
 

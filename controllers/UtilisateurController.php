@@ -36,6 +36,4 @@ class UtilisateurController
 
       Utilities::renderPage($datas_page);
    }
-
-   
 }

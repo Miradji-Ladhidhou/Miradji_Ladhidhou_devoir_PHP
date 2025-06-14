@@ -23,9 +23,9 @@ class TrajetsModel extends PdoModel
     }
 
     public function getTrajetsDisponibles()
-{
-    $pdo = self::getPdo();
-    $stmt = $pdo->query("
+    {
+        $pdo = self::getPdo();
+        $stmt = $pdo->query("
         SELECT 
             trajets.*, 
             a1.ville AS agence_depart, 
@@ -35,8 +35,26 @@ class TrajetsModel extends PdoModel
         JOIN agences a2 ON trajets.id_agences_arrivee = a2.id_agences
         WHERE trajets.places_disponibles > 0
     ");
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
+    public function createTrajetPage($data)
+    {
+        $sql = "INSERT INTO trajets (
+                id_users, id_agences_depart, id_agences_arrivee,
+                date_heure_depart, date_heure_arrivee,
+                places_totales, places_disponibles
+            ) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
+        $stmt = $this->getPdo()->prepare($sql);
+        $stmt->execute([
+            $data['id_users'],
+            $data['id_agences_depart'],
+            $data['id_agences_arrivee'],
+            $data['date_heure_depart'],
+            $data['date_heure_arrivee'],
+            $data['places_totales'],
+            $data['places_disponibles']
+        ]);
+    }
 }

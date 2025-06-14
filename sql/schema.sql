@@ -23,7 +23,7 @@ CREATE TABLE trajets (
     id_agences_arrivee INT NOT NULL,
     date_heure_depart DATETIME NOT NULL,
     date_heure_arrivee DATETIME NOT NULL,
-    places_total INT NOT NULL, 
+    places_totales INT NOT NULL, 
     places_disponibles INT NOT NULL, 
     FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE CASCADE,
     FOREIGN KEY (id_agences_depart) REFERENCES agences(id_agences) ON DELETE RESTRICT,
