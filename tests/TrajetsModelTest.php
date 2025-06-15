@@ -3,6 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use Models\TrajetsModel;
 
+
 class TrajetsModelTest extends TestCase
 {
     private TrajetsModel $model;
@@ -54,5 +55,49 @@ class TrajetsModelTest extends TestCase
         }
 
         $this->assertTrue($found, "Le trajet inséré doit être retrouvé dans la liste");
+    }
+
+    public function testUpdateTrajetPageUpdatesData()
+    {
+        $initialData = [
+            'id_users' => 1,
+            'id_agences_depart' => 1,
+            'id_agences_arrivee' => 2,
+            'date_heure_depart' => '2025-06-15 08:00:00',
+            'date_heure_arrivee' => '2025-06-15 10:00:00',
+            'places_totales' => 4,
+            'places_disponibles' => 4
+        ];
+
+        $this->model->createTrajetPage($initialData);
+
+        $trajets = $this->model->getAlltrajets();
+        $trajet = end($trajets);
+        $id = $trajet['id_trajets'];
+
+        $updatedData = [
+            'id' => $id,
+            'id_users' => 1,
+            'id_agences_depart' => 3,
+            'id_agences_arrivee' => 5,
+            'date_heure_depart' => '2025-06-15 15:00:00',
+            'date_heure_arrivee' => '2025-06-15 17:00:00',
+            'places_totales' => 5,
+            'places_disponibles' => 3
+        ];
+
+        $rowsAffected = $this->model->updateTrajet($id, $updatedData);
+
+        $this->assertGreaterThanOrEqual(1, $rowsAffected, "Le trajet doit être mis à jour");
+
+        $trajets = $this->model->getAlltrajets();
+        foreach ($trajets as $t) {
+            if ($t['id_trajets'] == $id) {
+                $this->assertEquals('2025-06-15 15:00:00', $t['date_heure_depart']);
+                $this->assertEquals(5, $t['places_totales']);
+                $this->assertEquals(3, $t['places_disponibles']);
+                $this->assertEquals(3, $t['id_agences_depart']);
+            }
+        }
     }
 }

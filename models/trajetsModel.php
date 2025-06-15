@@ -1,7 +1,9 @@
 <?php
+
 namespace Models;
 
 require_once('./config/config.php');
+
 use Models\PdoModel;
 use PDO;
 
@@ -62,15 +64,15 @@ class TrajetsModel extends PdoModel
     }
 
     public function getTrajetById($id)
-{
-    $stmt = $this->getPdo()->prepare("SELECT * FROM trajets WHERE id_trajets = ?");
-    $stmt->execute([$id]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
+    {
+        $stmt = $this->getPdo()->prepare("SELECT * FROM trajets WHERE id_trajets = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
-public function updateTrajet($data)
-{
-    $sql = "UPDATE trajets SET 
+    public function updateTrajet($id, $data)
+    {
+        $sql = "UPDATE trajets SET 
                 id_agences_depart = ?, 
                 id_agences_arrivee = ?, 
                 date_heure_depart = ?, 
@@ -78,17 +80,17 @@ public function updateTrajet($data)
                 places_totales = ?, 
                 places_disponibles = ? 
             WHERE id_trajets = ?";
-    
-    $stmt = $this->getPdo()->prepare($sql);
-    $stmt->execute([
-        $data['id_agences_depart'],
-        $data['id_agences_arrivee'],
-        $data['date_heure_depart'],
-        $data['date_heure_arrivee'],
-        $data['places_totales'],
-        $data['places_totales'], 
-        $data['id'],
-    ]);
-}
 
+        $stmt = $this->getPdo()->prepare($sql);
+        $stmt->execute([
+            $data['id_agences_depart'],
+            $data['id_agences_arrivee'],
+            $data['date_heure_depart'],
+            $data['date_heure_arrivee'],
+            $data['places_totales'],
+            $data['places_disponibles'],
+            $id
+        ]);
+        return $stmt->rowCount();
+    }
 }

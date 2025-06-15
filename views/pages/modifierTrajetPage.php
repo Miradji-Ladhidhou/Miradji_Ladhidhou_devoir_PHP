@@ -49,14 +49,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($datetime_arrivee <= $datetime_depart) $errors[] = "L'arrivée doit être après le départ.";
 
     if (empty($errors)) {
-        $trajetsModel->updateTrajet([
-            'id' => $id_trajet,
+        $data = [
+            'id_trajets' => $id_trajet,
             'id_agences_depart' => $depart,
             'id_agences_arrivee' => $arrivee,
             'date_heure_depart' => date('Y-m-d H:i:s', $datetime_depart),
             'date_heure_arrivee' => date('Y-m-d H:i:s', $datetime_arrivee),
             'places_totales' => $places,
-        ]);
+            'places_disponibles' => $places // On suppose que toutes les places sont disponibles après modification
+        ];
+        
+        
         $success = true;
 
         $trajet = $trajetsModel->getTrajetById($id_trajet);
