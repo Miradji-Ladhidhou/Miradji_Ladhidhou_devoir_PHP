@@ -49,4 +49,31 @@ class TrajetController
 
       Utilities::renderPage($datas_page);
    }
+
+   public function modifierTrajetPage()
+   {
+      $trajetId = $_GET['id'] ?? null;
+
+      if (!$trajetId || !is_numeric($trajetId)) {
+         $this->errorPage("Trajet invalide.");
+         return;
+      }
+
+      $trajet = $this->trajets->getTrajetById($trajetId);
+
+      if (!$trajet) {
+         $this->errorPage("Trajet non trouvé.");
+         return;
+      }
+
+      $datas_page = [
+         'views' => "./views/pages/modifierTrajetPage.php",
+         'layout' => "./views/layout/commun.php",
+         'title' => "Modifier un trajet",
+         'description' => "Bienvenue sur la page de modification de trajet.",
+         'trajet' => $trajet
+      ];
+
+      Utilities::renderPage($datas_page);
+   }
 }

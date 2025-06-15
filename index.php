@@ -68,6 +68,11 @@ try {
             $TrajetController->createTrajetPage();
             break;
 
+        // Route pour la modification d'un trajet
+        case 'modifierTrajet':
+            $TrajetController->modifierTrajetPage();
+            break;
+
         // Route pour la page d'erreur
         default:
             throw new Exception("Page non trouvée");

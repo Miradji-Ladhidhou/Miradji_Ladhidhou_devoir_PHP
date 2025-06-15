@@ -55,7 +55,7 @@
                         <td>
                             <a href="details.php?id=<?= $trajet['id_trajets'] ?>">Détail</a>
                             <?php if ($_SESSION['user']['id'] == $trajet['id_users'] || $_SESSION['user']['est_admin']): ?>
-                                | <a href="edit.php?id=<?= $trajet['id_trajets'] ?>">Modifier</a>
+                                | <a href="index.php?page=modifierTrajet&id=<?= $trajet['id_trajets'] ?>">Modifier</a>
                             <?php endif; ?>
                             <?php if ($_SESSION['user']['est_admin']): ?>
                                 | <a href="delete.php?id=<?= $trajet['id_trajets'] ?>" class="text-danger" onclick="return confirm('Supprimer ce trajet ?');">Supprimer</a>
