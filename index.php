@@ -73,6 +73,12 @@ try {
             $TrajetController->modifierTrajetPage();
             break;
 
+        // Route pour supprimer un trajet
+        case 'supprimerTrajet':
+            $TrajetController->supprimerTrajet();
+            break;
+
+
         // Route pour la page d'erreur
         default:
             throw new Exception("Page non trouvée");

@@ -100,4 +100,33 @@ class TrajetsModelTest extends TestCase
             }
         }
     }
+
+    // Test de suppression d'un trajet
+    public function testDeleteTrajet()
+    {
+        $data = [
+            'id_users' => 1,
+            'id_agences_depart' => 1,
+            'id_agences_arrivee' => 2,
+            'date_heure_depart' => '2025-06-15 10:00:00',
+            'date_heure_arrivee' => '2025-06-15 12:00:00',
+            'places_totales' => 4,
+            'places_disponibles' => 4
+        ];
+
+        $this->model->createTrajetPage($data);
+
+        $trajets = $this->model->getAlltrajets();
+        $trajet = end($trajets);
+        $id = $trajet['id_trajets'];
+
+        $rowsAffected = $this->model->deleteTrajet($id);
+
+        $this->assertGreaterThanOrEqual(1, $rowsAffected, "Le trajet doit être supprimé");
+
+        $trajets = $this->model->getAlltrajets();
+        foreach ($trajets as $t) {
+            $this->assertNotEquals($id, $t['id_trajets'], "Le trajet supprimé ne doit plus exister");
+        }
+    }
 }

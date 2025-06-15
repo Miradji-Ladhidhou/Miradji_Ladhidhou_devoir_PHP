@@ -93,4 +93,11 @@ class TrajetsModel extends PdoModel
         ]);
         return $stmt->rowCount();
     }
+
+    public function deleteTrajet($id)
+    {
+        $stmt = $this->getPdo()->prepare("DELETE FROM trajets WHERE id_trajets = ?");
+        $stmt->execute([$id]);
+        return $stmt->rowCount();
+    }
 }

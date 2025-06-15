@@ -1,8 +1,17 @@
     <?php
     session_start();
+
     $isAdmin = isset($_SESSION['user']) && !empty($_SESSION['user']['est_admin']);
+
     use Models\TrajetsModel;
     ?>
+
+    <?php if (!empty($_SESSION['message'])): ?>
+        <div style="color: green; padding: 10px;">
+            <?= htmlspecialchars($_SESSION['message']) ?>
+        </div>
+        <?php unset($_SESSION['message']); ?>
+    <?php endif; ?>
 
 
     <h1>
@@ -58,7 +67,7 @@
                                 | <a href="index.php?page=modifierTrajet&id=<?= $trajet['id_trajets'] ?>">Modifier</a>
                             <?php endif; ?>
                             <?php if ($_SESSION['user']['est_admin']): ?>
-                                | <a href="delete.php?id=<?= $trajet['id_trajets'] ?>" class="text-danger" onclick="return confirm('Supprimer ce trajet ?');">Supprimer</a>
+                                | <a href="index.php?page=supprimerTrajet&id=<?= $trajet['id_trajets'] ?>" class="text-danger" onclick="return confirm('Supprimer ce trajet ?');">Supprimer</a>
                             <?php endif; ?>
                         </td>
                     <?php endif; ?>

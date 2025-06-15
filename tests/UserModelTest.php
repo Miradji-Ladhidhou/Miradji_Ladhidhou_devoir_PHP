@@ -24,9 +24,8 @@ class UserModelTest extends TestCase
     }
 
     public function testFindUserByEmailReturnsFalseForUnknownEmail()
-{
-    $result = UserModel::findUserByEmail('email_qui_n_existe_pas@example.com');
-    $this->assertFalse($result);
-}
-
+    {
+        $result = UserModel::findUserByEmail('email_qui_n_existe_pas@example.com');
+        $this->assertFalse($result);
+    }
 }
