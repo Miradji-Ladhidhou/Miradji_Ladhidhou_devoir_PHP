@@ -10,6 +10,7 @@ use Controllers\AgenceController;
 use Controllers\TrajetController;
 
 
+
 $mainController = new MainController();
 $authController = new AuthController();
 $utilisateurController = new UtilisateurController();
@@ -78,6 +79,16 @@ try {
             $TrajetController->supprimerTrajet();
             break;
 
+
+        // Route pour la création d'une agence
+        case 'createAgence':
+            $AgenceController->createAgencePage();
+            break;
+
+        // Route pour la suppression d'une agence
+        case 'supprimerAgence':
+            $AgenceController->supprimerAgence();
+            break;
 
         // Route pour la page d'erreur
         default:

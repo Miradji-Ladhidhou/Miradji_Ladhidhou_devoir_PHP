@@ -1,35 +1,41 @@
-    <?php
-    session_start();
-    use Models\AgencesModel;
-    ?>
+<?php
+session_start();
+require_once './models/AgencesModel.php';
+use Models\AgencesModel;
+
+$AgencesModel = new AgencesModel();
+?>
+
+<?php if (!empty($_SESSION['message'])): ?>
+        <div style="color: green; padding: 10px;">
+            <?= htmlspecialchars($_SESSION['message']) ?>
+        </div>
+        <?php unset($_SESSION['message']); ?>
+    <?php endif; ?>
+
+<h1>Bienvenue sur la page des agences !</h1>
 
 
-    <h1>Bienvenue sur la page des agences !</h1>
-
-    <?php
-    require_once './models/AgencesModel.php';
-    $AgencesModel = new AgencesModel();
-    ?>
-
-    <table class="table table-bordered table-striped">
-        <thead>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Ville</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($AgencesModel->getAllagences() as $agence): ?>
             <tr>
-                <th>Agences</th>
+                <td><?= htmlspecialchars($agence['ville']) ?></td>
+                <td>
+                    <a href="index.php?page=editAgence&id=<?= $agence['id_agences'] ?>">Modifier</a>
+                    <a href="index.php?page=supprimerAgence&id=<?= $agence['id_agences'] ?>" 
+                       onclick="return confirm('Confirmer la suppression de cette agence ?');" 
+                       class="btn btn-danger btn-sm">Supprimer</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($AgencesModel->getAllagences() as $agence): ?>
-                <tr>
-                    <td><?= htmlspecialchars($agence['ville']) ?></td>
-                    <td>
-                        | <a href="edit.php?id=<?= $trajet['id_trajets'] ?>">Modifier</a>
-                        | <a href="delete.php?id=<?= $trajet['id_trajets'] ?>" class="text-danger">Supprimer</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+        <?php endforeach; ?>
+    </tbody>
+</table>
 
-    <button class="btn btn-primary">
-        <a href="index.php?page=agence" class="text-white">Ajouter une agence</a>
-    </button>
+<a href="index.php?page=createAgence" class="btn btn-primary">Ajouter une agence</a>
