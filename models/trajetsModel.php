@@ -15,10 +15,12 @@ class TrajetsModel extends PdoModel
         $sql = "SELECT 
                 t.*, 
                 ad.ville AS agence_depart,
-                aa.ville AS agence_arrivee
+                aa.ville AS agence_arrivee,
+                u.nom, u.prenom, u.email, u.telephone
             FROM trajets t
             LEFT JOIN agences ad ON t.id_agences_depart = ad.id_agences
             LEFT JOIN agences aa ON t.id_agences_arrivee = aa.id_agences
+            LEFT JOIN users u ON t.id_users = u.id_users
             ORDER BY t.date_heure_depart ASC";
 
         $stmt = $this->getPdo()->prepare($sql);
@@ -27,21 +29,23 @@ class TrajetsModel extends PdoModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getTrajetsDisponibles()
-    {
-        $pdo = self::getPdo();
-        $stmt = $pdo->query("
-        SELECT 
-            trajets.*, 
-            a1.ville AS agence_depart, 
-            a2.ville AS agence_arrivee
-        FROM trajets
-        JOIN agences a1 ON trajets.id_agences_depart = a1.id_agences
-        JOIN agences a2 ON trajets.id_agences_arrivee = a2.id_agences
-        WHERE trajets.places_disponibles > 0
-    ");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+   public function getTrajetsDisponibles()
+{
+    $sql = "SELECT 
+                t.*, 
+                a1.ville AS agence_depart, 
+                a2.ville AS agence_arrivee,
+                u.nom, u.prenom, u.email, u.telephone
+            FROM trajets t
+            JOIN agences a1 ON t.id_agences_depart = a1.id_agences
+            JOIN agences a2 ON t.id_agences_arrivee = a2.id_agences
+            JOIN users u ON t.id_users = u.id_users
+            WHERE t.places_disponibles > 0
+            ORDER BY t.date_heure_depart ASC";
+
+    $stmt = $this->getPdo()->query($sql);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
     public function createTrajetPage($data)
     {
@@ -77,7 +81,7 @@ class TrajetsModel extends PdoModel
                 id_agences_arrivee = ?, 
                 date_heure_depart = ?, 
                 date_heure_arrivee = ?, 
-                places_totales = ?, 
+                places_totales = ?,
                 places_disponibles = ? 
             WHERE id_trajets = ?";
 

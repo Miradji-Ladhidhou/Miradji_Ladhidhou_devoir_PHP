@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 use Models\AgencesModel;
 use Models\TrajetsModel;
 
@@ -27,12 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $heure_depart = $_POST['heure_depart'] ?? '';
     $date_arrivee = $_POST['date_arrivee'] ?? '';
     $heure_arrivee = $_POST['heure_arrivee'] ?? '';
-    $places = intval($_POST['places'] ?? 0);
+    $places_totales = intval($_POST['places_totales'] ?? 0);
+    $places_disponibles = intval($_POST['places_disponibles'] ?? 0);
 
     // Validation
     if ($depart === $arrivee) $errors[] = "L'agence de départ et d'arrivée doivent être différentes.";
     if (empty($date_depart) || empty($heure_depart) || empty($date_arrivee) || empty($heure_arrivee)) $errors[] = "Toutes les dates et heures doivent être renseignées.";
-    if ($places < 1) $errors[] = "Le nombre de places doit être supérieur à 0.";
+    if ($places_totales < 1) $errors[] = "Le nombre de places doit être supérieur à 0.";
+    if ($places_disponibles > $places_totales) $errors[] = "Les places disponibles ne peuvent pas dépasser le nombre total de places.";
 
     $datetime_depart = strtotime("$date_depart $heure_depart");
     $datetime_arrivee = strtotime("$date_arrivee $heure_arrivee");
@@ -46,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'id_agences_arrivee' => $arrivee,
             'date_heure_depart' => date('Y-m-d H:i:s', $datetime_depart),
             'date_heure_arrivee' => date('Y-m-d H:i:s', $datetime_arrivee),
-            'places_totales' => $places,
-            'places_disponibles' => $places,
+            'places_totales' => $places_totales,
+            'places_disponibles' => $places_disponibles,
         ]);
         $success = true;
     }
@@ -130,8 +133,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="mb-3">
-            <label class="form-label">places_totales</label>
-            <input type="number" name="places" class="form-control" min="1" required>
+            <label class="form-label">Places totales</label>
+            <input type="number" name="places_totales" class="form-control" min="1" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Places disponibles</label>
+            <input type="number" name="places_disponibles" class="form-control" min="1" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Créer le trajet</button>

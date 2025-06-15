@@ -82,15 +82,23 @@ class TrajetController
    {
       session_start();
 
-      // Vérifie que l'utilisateur est admin (ou a le droit)
-      if (!isset($_SESSION['user']) || empty($_SESSION['user']['est_admin'])) {
-         // pas autorisé
+      // Vérifie que l'utilisateur est connecté ou est admin
+      // Récupère l'id depuis GET et sécurise
+      $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+      if (!$id) {
+         header('Location: index.php?page=trajets');
+         exit;
+      }
+
+      // Récupère le trajet
+      $trajet = $this->trajets->getTrajetById($id);
+
+      // Vérifie que l'utilisateur est connecté et a le droit de supprimer
+      if (!isset($_SESSION['user']) || (!$_SESSION['user']['est_admin'] && $trajet['id_users'] != $_SESSION['user']['id'])) {
          header('HTTP/1.1 403 Forbidden');
          exit('Accès refusé');
       }
-
-      // Récupère l'id depuis GET et sécurise
-      $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
       if (!$id) {
          // id invalide

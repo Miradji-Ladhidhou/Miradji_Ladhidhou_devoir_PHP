@@ -62,11 +62,33 @@
                     <td><?= $trajet['places_disponibles'] ?></td>
                     <?php if (isset($_SESSION['user'])): ?>
                         <td>
-                            <a href="details.php?id=<?= $trajet['id_trajets'] ?>">Détail</a>
+                            <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalLabel<?= $trajet['id_trajets'] ?>">
+                                Détail
+                            </button>
+                            <div class="modal fade" id="modalLabel<?= $trajet['id_trajets'] ?>" tabindex="-1" aria-labelledby="modalLabel<?= $trajet['id_trajets'] ?>" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalLabel<?= $trajet['id_trajets'] ?>">Détails du trajet</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>Conducteur</h6>
+                                            <ul>
+                                                <li><strong>Auteur :</strong> <?= htmlspecialchars($trajet['nom']. ' ' .$trajet['prenom']) ?></li>
+                                                <li><strong>Téléphone :</strong> <?= htmlspecialchars($trajet['telephone']) ?></li>
+                                                <li><strong>Email :</strong> <?= htmlspecialchars($trajet['email']) ?></li>
+                                                <li><strong>Nombre total de places :</strong> <?= htmlspecialchars($trajet['places_totales']) ?></li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <?php if ($_SESSION['user']['id'] == $trajet['id_users'] || $_SESSION['user']['est_admin']): ?>
                                 | <a href="index.php?page=modifierTrajet&id=<?= $trajet['id_trajets'] ?>">Modifier</a>
-                            <?php endif; ?>
-                            <?php if ($_SESSION['user']['est_admin']): ?>
                                 | <a href="index.php?page=supprimerTrajet&id=<?= $trajet['id_trajets'] ?>" class="text-danger" onclick="return confirm('Supprimer ce trajet ?');">Supprimer</a>
                             <?php endif; ?>
                         </td>

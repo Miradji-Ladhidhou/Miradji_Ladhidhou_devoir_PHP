@@ -37,40 +37,5 @@ INSERT INTO users (prenom, nom, telephone, email, mot_de_passe, est_admin) VALUE
 ('Henry', 'Arthur', '0666554433', 'arthur.henry@email.fr', '$2y$10$5aiDCgwRFRIrK8eLmZ.83OLBpg/M91HIjZfIoTmSeuaF5NiYByHTC', FALSE);
 
 
--- Trajet 1 : Paris → Lyon
-INSERT INTO trajets (
-    id_users, id_agences_depart, id_agences_arrivee,
-    date_heure_depart, date_heure_arrivee,
-    places_total, places_disponibles
-) VALUES (
-    2, 1, 2,
-    '2025-06-10 08:30:00', '2025-06-10 12:30:00',
-    4, 4
-);
 
--- Trajet 2 : Marseille → Toulouse
-INSERT INTO trajets (
-    id_users, id_agences_depart, id_agences_arrivee,
-    date_heure_depart, date_heure_arrivee,
-    places_total, places_disponibles
-) VALUES (
-    3, 3, 4,
-    '2025-06-12 14:00:00', '2025-06-12 18:00:00',
-    3, 3
-);
-
-
--- Réservation 1 : pour le trajet Paris → Lyon (id_trajets = 1), par l'utilisateur 4
-INSERT INTO reservations (
-    id_trajets, id_users, places_reservees
-) VALUES (
-    1, 4, 1
-);
-
--- Réservation 2 : pour le trajet Marseille → Toulouse (id_trajets = 2), par l'utilisateur 5
-INSERT INTO reservations (
-    id_trajets, id_users, places_reservees
-) VALUES (
-    2, 5, 2
-);
 

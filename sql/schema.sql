@@ -30,14 +30,4 @@ CREATE TABLE trajets (
     FOREIGN KEY (id_agences_arrivee) REFERENCES agences(id_agences) ON DELETE RESTRICT
 );
 
--- table reservations
-CREATE TABLE reservations (
-    id_reservations INT AUTO_INCREMENT PRIMARY KEY,
-    id_trajets INT NOT NULL,
-    id_users INT NOT NULL,
-    date_reservations DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    places_reservees INT NOT NULL,
-    FOREIGN KEY (id_trajets) REFERENCES trajets(id_trajets) ON DELETE CASCADE,
-    FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE CASCADE
-);
 
