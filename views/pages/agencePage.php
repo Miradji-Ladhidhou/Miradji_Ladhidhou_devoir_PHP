@@ -28,7 +28,6 @@ $AgencesModel = new AgencesModel();
             <tr>
                 <td><?= htmlspecialchars($agence['ville']) ?></td>
                 <td>
-                    <a href="index.php?page=editAgence&id=<?= $agence['id_agences'] ?>">Modifier</a>
                     <a href="index.php?page=supprimerAgence&id=<?= $agence['id_agences'] ?>" 
                        onclick="return confirm('Confirmer la suppression de cette agence ?');" 
                        class="btn btn-danger btn-sm">Supprimer</a>

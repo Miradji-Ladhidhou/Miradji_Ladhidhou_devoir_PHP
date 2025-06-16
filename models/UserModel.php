@@ -13,4 +13,13 @@ class UserModel extends PdoModel
         $stmt->execute([$email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+     public static function getAllusers(): array
+    {
+        $pdo = self::getPdo();
+        $stmt = $pdo->query("SELECT * FROM users");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
+
+

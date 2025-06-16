@@ -1,7 +1,13 @@
 <?php if (session_status() === PHP_SESSION_NONE) session_start(); ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
   <div class="container-fluid">
-    <a class="navbar-brand" href="<?= htmlspecialchars(ROOT) ?>">TOUCHE PAS AU KLAXON</a>
+    <?php
+    $logoLink = (isset($_SESSION['user']) && !empty($_SESSION['user']['est_admin']))
+      ? htmlspecialchars(ROOT) . 'index.php?page=dashboard'
+      : '#';
+    ?>
+    <a class="navbar-brand" href="<?= $logoLink ?>">TOUCHE PAS AU KLAXON</a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -38,7 +44,7 @@
 
             <!-- User connecté -->
             <li class="nav-item">
-              <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>index.php?page=trajet">Création trajet</a>
+              <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>index.php?page=createTtrajet">Création trajet</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>index.php?page=accueil">Trajets</a>

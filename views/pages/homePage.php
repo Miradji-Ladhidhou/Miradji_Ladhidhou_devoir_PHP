@@ -1,8 +1,6 @@
     <?php
     session_start();
 
-    $isAdmin = isset($_SESSION['user']) && !empty($_SESSION['user']['est_admin']);
-
     use Models\TrajetsModel;
     ?>
 
@@ -14,15 +12,23 @@
     <?php endif; ?>
 
 
-    <h1>
-        <?= $isAdmin ? 'Liste des trajets' : 'Bienvenue sur la page d\'accueil !' ?>
-    </h1>
+    <?php
+    $isLoggedIn = isset($_SESSION['user']);
+    $isAdmin = $isLoggedIn && !empty($_SESSION['user']['est_admin']) && $_SESSION['user']['est_admin'];
 
-    <br>
+    if (!$isLoggedIn): ?>
+        <h1>Bienvenue sur la liste des trajets</h1>
+        <h2>Pour plus d'information sur un trajet, veuillez vous connecter</h2>
 
-    <h2>
-        <?= $isAdmin ? '' : 'Consultez les trajets disponibles' ?>
-    </h2>
+    <?php elseif ($isAdmin): ?>
+        <h1>Bienvenue administrateur</h1>
+        <h2>Liste des trajets</h2>
+        <a href="index.php?page=createTtrajet" class="btn btn-primary">Ajouter un trajet</a>
+
+    <?php else: ?>
+        <h1>Bienvenue sur la liste des trajets</h1>
+        <h2>Trajets proposés</h2>
+    <?php endif; ?>
 
     <?php
     require_once './models/TrajetsModel.php';
@@ -75,7 +81,7 @@
                                         <div class="modal-body">
                                             <h6>Conducteur</h6>
                                             <ul>
-                                                <li><strong>Auteur :</strong> <?= htmlspecialchars($trajet['nom']. ' ' .$trajet['prenom']) ?></li>
+                                                <li><strong>Auteur :</strong> <?= htmlspecialchars($trajet['nom'] . ' ' . $trajet['prenom']) ?></li>
                                                 <li><strong>Téléphone :</strong> <?= htmlspecialchars($trajet['telephone']) ?></li>
                                                 <li><strong>Email :</strong> <?= htmlspecialchars($trajet['email']) ?></li>
                                                 <li><strong>Nombre total de places :</strong> <?= htmlspecialchars($trajet['places_totales']) ?></li>
@@ -87,7 +93,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php if ($_SESSION['user']['id'] == $trajet['id_users'] || $_SESSION['user']['est_admin']): ?>
+                            <?php if (
+                                isset($_SESSION['user']['id'], $trajet['id_users']) && ($_SESSION['user']['id'] == $trajet['id_users'] || !empty($_SESSION['user']['est_admin']))
+                            ): ?>
                                 | <a href="index.php?page=modifierTrajet&id=<?= $trajet['id_trajets'] ?>">Modifier</a>
                                 | <a href="index.php?page=supprimerTrajet&id=<?= $trajet['id_trajets'] ?>" class="text-danger" onclick="return confirm('Supprimer ce trajet ?');">Supprimer</a>
                             <?php endif; ?>

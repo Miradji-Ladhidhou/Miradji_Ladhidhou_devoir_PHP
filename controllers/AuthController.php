@@ -1,4 +1,5 @@
 <?php
+
 namespace Controllers;
 
 use Models\UserModel;
@@ -63,8 +64,13 @@ class AuthController
             'est_admin' => $user['est_admin'],
         ];
 
-        // Redirection vers la page d'accueil
-        header('Location: ' . ROOT . 'index.php?page=accueil');
+        // Exemple dans LoginController.php (après vérification du mot de passe)
+        if (!empty($user['est_admin'])) {
+            header('Location: index.php?page=dashboard');
+            exit;
+        }
+
+        header('Location: index.php?page=accueil');
         exit;
     }
 

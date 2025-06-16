@@ -8,6 +8,7 @@ use Controllers\AuthController;
 use Controllers\UtilisateurController;
 use Controllers\AgenceController;
 use Controllers\TrajetController;
+use Controllers\DashboardAdminController;
 
 
 
@@ -16,6 +17,7 @@ $authController = new AuthController();
 $utilisateurController = new UtilisateurController();
 $AgenceController = new AgenceController();
 $TrajetController = new TrajetController();
+$DashboardAdminController = new DashboardAdminController ();
 $uri = trim($_SERVER['REQUEST_URI'], '/');
 
 
@@ -65,7 +67,7 @@ try {
             break;
 
         // Route pour la création de trajet
-        case 'trajet':
+        case 'createTtrajet':
             $TrajetController->createTrajetPage();
             break;
 
@@ -90,6 +92,14 @@ try {
             $AgenceController->supprimerAgence();
             break;
 
+        // Route pour le dashboard
+        case 'dashboard':
+    require_once './controllers/DashboardAdminController.php';
+    $controller = new \Controllers\DashboardAdminController();
+    $controller->index();
+    break;
+
+            
         // Route pour la page d'erreur
         default:
             throw new Exception("Page non trouvée");

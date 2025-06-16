@@ -1,3 +1,3 @@
 <div class="container">
-    <p class="text-center">© 2025 Tous droits réservés.</p>
+    <p class="text-center">© 2025 TOUCHE PAS AU KLAXON</p>
 </div>
