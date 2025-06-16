@@ -7,10 +7,17 @@ require_once('./config/config.php');
 use Models\PdoModel;
 use PDO;
 
+/**
+ * Modèle pour la gestion des trajets.
+ */
 class TrajetsModel extends PdoModel
 {
-
-    public function getAlltrajets()
+    /**
+     * Récupère tous les trajets avec informations associées.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public function getAlltrajets(): array
     {
         $sql = "SELECT 
                 t.*, 
@@ -29,9 +36,14 @@ class TrajetsModel extends PdoModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-   public function getTrajetsDisponibles()
-{
-    $sql = "SELECT 
+    /**
+     * Récupère les trajets avec places disponibles.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public function getTrajetsDisponibles(): array
+    {
+        $sql = "SELECT 
                 t.*, 
                 a1.ville AS agence_depart, 
                 a2.ville AS agence_arrivee,
@@ -43,11 +55,17 @@ class TrajetsModel extends PdoModel
             WHERE t.places_disponibles > 0
             ORDER BY t.date_heure_depart ASC";
 
-    $stmt = $this->getPdo()->query($sql);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+        $stmt = $this->getPdo()->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-    public function createTrajetPage($data)
+    /**
+     * Insère un nouveau trajet en base.
+     *
+     * @param array<string, mixed> $data Données du trajet.
+     * @return void
+     */
+    public function createTrajetPage(array $data): void
     {
         $sql = "INSERT INTO trajets (
                 id_users, id_agences_depart, id_agences_arrivee,
@@ -67,14 +85,27 @@ class TrajetsModel extends PdoModel
         ]);
     }
 
-    public function getTrajetById($id)
+    /**
+     * Récupère un trajet par son ID.
+     *
+     * @param int $id Identifiant du trajet.
+     * @return array<string, mixed>|false
+     */
+    public function getTrajetById(int $id)
     {
         $stmt = $this->getPdo()->prepare("SELECT * FROM trajets WHERE id_trajets = ?");
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function updateTrajet($id, $data)
+    /**
+     * Met à jour un trajet.
+     *
+     * @param int $id Identifiant du trajet.
+     * @param array<string, mixed> $data Données à mettre à jour.
+     * @return int Nombre de lignes affectées.
+     */
+    public function updateTrajet(int $id, array $data): int
     {
         $sql = "UPDATE trajets SET 
                 id_agences_depart = ?, 
@@ -98,7 +129,13 @@ class TrajetsModel extends PdoModel
         return $stmt->rowCount();
     }
 
-    public function deleteTrajet($id)
+    /**
+     * Supprime un trajet.
+     *
+     * @param int $id Identifiant du trajet.
+     * @return int Nombre de lignes supprimées.
+     */
+    public function deleteTrajet(int $id): int
     {
         $stmt = $this->getPdo()->prepare("DELETE FROM trajets WHERE id_trajets = ?");
         $stmt->execute([$id]);

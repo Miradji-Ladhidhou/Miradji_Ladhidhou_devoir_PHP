@@ -10,16 +10,15 @@ use Controllers\AgenceController;
 use Controllers\TrajetController;
 use Controllers\DashboardAdminController;
 
-
-
+// Instanciation des contrôleurs
 $mainController = new MainController();
 $authController = new AuthController();
 $utilisateurController = new UtilisateurController();
-$AgenceController = new AgenceController();
-$TrajetController = new TrajetController();
-$DashboardAdminController = new DashboardAdminController ();
-$uri = trim($_SERVER['REQUEST_URI'], '/');
+$agenceController = new AgenceController();
+$trajetController = new TrajetController();
+$dashboardAdminController = new DashboardAdminController();
 
+$uri = trim($_SERVER['REQUEST_URI'], '/');
 
 try {
     // Si 'page' n'est pas défini, charger la page d'accueil
@@ -31,18 +30,14 @@ try {
 
     // Routeur principal
     switch ($page) {
-
-        // Route pour la page d'accueil
         case 'accueil':
             $mainController->homePage();
             break;
 
-        // Route pour la page d'authentification
         case 'login':
             $authController->auth();
             break;
 
-        // Route pour le processus d'authentification
         case 'loginProcess':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $authController->loginProcess();
@@ -51,61 +46,45 @@ try {
             }
             break;
 
-        // Route pour la déconnexion
         case 'logout':
             $authController->logout();
             break;
 
-        // Route pour la page utilisateur
         case 'utilisateur':
             $utilisateurController->utilisateurPage();
             break;
 
-        // Route pour la page des agences
         case 'agence':
-            $AgenceController->agencePage();
+            $agenceController->agencePage();
             break;
 
-        // Route pour la création de trajet
-        case 'createTtrajet':
-            $TrajetController->createTrajetPage();
+        case 'createTrajet':
+            $trajetController->createTrajetPage();
             break;
 
-        // Route pour la modification d'un trajet
         case 'modifierTrajet':
-            $TrajetController->modifierTrajetPage();
+            $trajetController->modifierTrajetPage();
             break;
 
-        // Route pour supprimer un trajet
         case 'supprimerTrajet':
-            $TrajetController->supprimerTrajet();
+            $trajetController->supprimerTrajet();
             break;
 
-
-        // Route pour la création d'une agence
         case 'createAgence':
-            $AgenceController->createAgencePage();
+            $agenceController->createAgencePage();
             break;
 
-        // Route pour la suppression d'une agence
         case 'supprimerAgence':
-            $AgenceController->supprimerAgence();
+            $agenceController->supprimerAgence();
             break;
 
-        // Route pour le dashboard
         case 'dashboard':
-    require_once './controllers/DashboardAdminController.php';
-    $controller = new \Controllers\DashboardAdminController();
-    $controller->index();
-    break;
+            $dashboardAdminController->index();
+            break;
 
-            
-        // Route pour la page d'erreur
         default:
             throw new Exception("Page non trouvée");
     }
-
-    // Si aucune route ne correspond, afficher une page d'erreur 404
 } catch (Exception $e) {
     $mainController->errorPage($e->getMessage());
 }

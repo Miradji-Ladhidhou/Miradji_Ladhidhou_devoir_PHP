@@ -1,15 +1,30 @@
 <?php
+
 namespace Models;
 
 require_once('./config/config.php');
+
 use PDO;
 use PDOException;
 
+/**
+ * Classe abstraite fournissant une instance PDO partagée.
+ */
 abstract class PdoModel
 {
+    /**
+     * Instance PDO partagée.
+     *
+     * @var PDO|null
+     */
     protected static $pdo;
 
-    public static function getPdo()
+    /**
+     * Retourne une instance PDO unique (singleton).
+     *
+     * @return PDO Instance PDO connectée à la base de données.
+     */
+    public static function getPdo(): PDO
     {
         if (self::$pdo === null) {
             try {

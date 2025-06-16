@@ -44,7 +44,7 @@
 
             <!-- User connecté -->
             <li class="nav-item">
-              <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>index.php?page=createTtrajet">Création trajet</a>
+              <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>index.php?page=createTrajet">Création trajet</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?= htmlspecialchars(ROOT) ?>index.php?page=accueil">Trajets</a>

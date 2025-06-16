@@ -7,12 +7,29 @@ use Models\AgencesModel;
 use Models\TrajetsModel;
 use Controllers\Utilities;
 
+/**
+ * Contrôleur pour la gestion du tableau de bord administrateur.
+ */
 class DashboardAdminController
 {
+    /**
+     * @var UserModel
+     */
     private $userModel;
+
+    /**
+     * @var AgencesModel
+     */
     private $agencesModel;
+
+    /**
+     * @var TrajetsModel
+     */
     private $trajetsModel;
 
+    /**
+     * Initialise les modèles nécessaires.
+     */
     public function __construct()
     {
         $this->userModel = new UserModel();
@@ -20,7 +37,12 @@ class DashboardAdminController
         $this->trajetsModel = new TrajetsModel();
     }
 
-    public function index()
+    /**
+     * Affiche la page du dashboard admin.
+     *
+     * @return void
+     */
+    public function index(): void
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();

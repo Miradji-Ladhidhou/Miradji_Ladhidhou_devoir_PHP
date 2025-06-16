@@ -1,13 +1,16 @@
 <?php
+
 namespace Models;
 
 require_once('./config/config.php');
+
 use Models\PdoModel;
 use PDO;
 
 class UtilisateursModel extends PdoModel
 {
 
+    // Récupère tous les utilisateurs triés par prénom
     public function getAllusers()
     {
         $sql = "SELECT 
