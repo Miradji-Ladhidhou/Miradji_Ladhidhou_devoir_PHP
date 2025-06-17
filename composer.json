@@ -17,5 +17,4 @@
         "phpunit/phpunit": "^12.2",
         "phpstan/phpstan": "^2.1"
     }
-    
 }
