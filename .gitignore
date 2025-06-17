@@ -22,3 +22,7 @@ sessions/
 /vendor/
 
 composer.lock
+
+
+# Node modules (dépendances npm)
+/node_modules/
