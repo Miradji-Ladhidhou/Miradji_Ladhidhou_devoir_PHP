@@ -5,7 +5,7 @@
     ?>
 
     <?php if (!empty($_SESSION['message'])): ?>
-        <div style="color: green; padding: 10px;">
+        <div class="flash">
             <?= htmlspecialchars($_SESSION['message']) ?>
         </div>
         <?php unset($_SESSION['message']); ?>
@@ -21,9 +21,8 @@
         <h2>Pour plus d'information sur un trajet, veuillez vous connecter</h2>
 
     <?php elseif ($isAdmin): ?>
-        <h1>Bienvenue administrateur</h1>
-        <h2>Liste des trajets</h2>
-        <a href="index.php?page=createTtrajet" class="btn btn-primary">Ajouter un trajet</a>
+        <h1>Bienvenue sur la page des trajets!</h1>
+        <a href="index.php?page=createTrajet" class="btn">Ajouter un trajet</a>
 
     <?php else: ?>
         <h1>Bienvenue sur la liste des trajets</h1>
@@ -68,7 +67,7 @@
                     <td><?= $trajet['places_disponibles'] ?></td>
                     <?php if (isset($_SESSION['user'])): ?>
                         <td>
-                            <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalLabel<?= $trajet['id_trajets'] ?>">
+                            <button type="button" class="btnModal" data-bs-toggle="modal" data-bs-target="#modalLabel<?= $trajet['id_trajets'] ?>">
                                 Détail
                             </button>
                             <div class="modal fade" id="modalLabel<?= $trajet['id_trajets'] ?>" tabindex="-1" aria-labelledby="modalLabel<?= $trajet['id_trajets'] ?>" aria-hidden="true">

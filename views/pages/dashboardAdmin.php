@@ -63,7 +63,7 @@ $trajets = $trajetModel->getAlltrajets();
             <div id="collapseTrajets" class="accordion-collapse collapse" aria-labelledby="headingTrajets" data-bs-parent="#accordionDashboard">
                 <div class="accordion-body">
                     <p><strong>Total :</strong> <?= count($trajets ?? []) ?> trajet(s).</p>
-                    <a href="index.php?page=accueil" class="btn btn-warning">Gérer les trajets</a>
+                    <a href="index.php?page=accueil" class="btn btn-success">Gérer les trajets</a>
                 </div>
             </div>
         </div>

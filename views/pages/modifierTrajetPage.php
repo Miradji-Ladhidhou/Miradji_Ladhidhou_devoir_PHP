@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
 
         $trajetsModel->updateTrajet($id_trajet, $data);
-        
+
         $success = true;
 
         $trajet = $trajetsModel->getTrajetById($id_trajet);
@@ -75,10 +75,9 @@ $dt_arrivee = new DateTime($trajet['date_heure_arrivee']);
 ?>
 
 <div class="container mt-5">
-    <h2>Modifier un trajet</h2>
 
     <?php if ($success): ?>
-        <div class="alert alert-success">Trajet modifié avec succès !</div>
+        <div class="flash">Trajet modifié avec succès !</div>
     <?php elseif (!empty($errors)): ?>
         <div class="alert alert-danger">
             <ul>
@@ -86,6 +85,8 @@ $dt_arrivee = new DateTime($trajet['date_heure_arrivee']);
             </ul>
         </div>
     <?php endif; ?>
+
+    <h2>Modifier un trajet</h2>
 
     <form method="post">
         <div class="mb-3">
@@ -142,6 +143,6 @@ $dt_arrivee = new DateTime($trajet['date_heure_arrivee']);
             <input type="number" name="places_disponibles" class="form-control" min="0" value="<?= htmlspecialchars($trajet['places_disponibles']) ?>" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="submit" class="btn">Enregistrer</button>
     </form>
 </div>

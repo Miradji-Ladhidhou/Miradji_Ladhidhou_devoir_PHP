@@ -8,7 +8,7 @@ Thumbs.db
 # Dossiers d'éditeurs
 .vscode/
 .idea/
-node_modules/   # au cas où tu aurais un peu de JS moderne
+
 
 # Configuration locale
 config/config.php

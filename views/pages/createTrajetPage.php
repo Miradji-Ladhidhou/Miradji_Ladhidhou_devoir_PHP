@@ -58,10 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <div class="container mt-5">
-    <h2>Création d'un trajet</h2>
-
     <?php if ($success): ?>
-        <div class="alert alert-success">Trajet créé avec succès !</div>
+        <div class="flash">Trajet créé avec succès !</div>
     <?php elseif (!empty($errors)): ?>
         <div class="alert alert-danger">
             <ul>
@@ -69,6 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </ul>
         </div>
     <?php endif; ?>
+
+    <h2>Création d'un trajet</h2>
 
     <form method="post">
         <fieldset disabled>
@@ -142,6 +142,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="number" name="places_disponibles" class="form-control" min="1" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Créer le trajet</button>
+        <button type="submit" class="btn">Créer le trajet</button>
     </form>
 </div>

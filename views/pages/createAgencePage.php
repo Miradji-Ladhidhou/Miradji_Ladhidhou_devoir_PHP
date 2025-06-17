@@ -31,10 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <div class="container mt-5">
-    <h2>Création d'une agence</h2>
 
     <?php if ($success): ?>
-        <div class="alert alert-success">Agence créée avec succès !</div>
+        <div class="flash">Agence créée avec succès !</div>
     <?php elseif (!empty($errors)): ?>
         <div class="alert alert-danger">
             <ul>
@@ -42,6 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </ul>
         </div>
     <?php endif; ?>
+
+    <h2>Création d'une agence</h2>
 
     <form method="post">
         <fieldset disabled>
@@ -56,6 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" name="ville" class="form-control" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Créer l'agence</button>
+        <button type="submit" class="btn">Créer l'agence</button>
     </form>
 </div>
