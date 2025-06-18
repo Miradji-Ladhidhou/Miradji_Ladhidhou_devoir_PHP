@@ -85,22 +85,8 @@ http://localhost/Miradji_Ladhidhou_devoir_PHP
 
 -----------------------------------------
 
-6. **Connexion à l'application**
 
-- **Admin**
-    Email : admin@email.fr
-    Mot de passe : admin456
-
-- **User**
-    Email : alexandre.martin@email.fr
-    Mot de passe : user123
-
-    Email : camille.moreau@email.fr
-    Mot de passe : user123
-
------------------------------------------
-
-7. **Tests unitaires avec PHPUnit**
+6. **Tests unitaires avec PHPUnit**
 
 Les tests des modèles se trouvent dans le dossier `tests/`.
 
@@ -114,7 +100,7 @@ Remplacez "UtilisateursModelTest.php" par le nom du fichier de test voulu
 
 -----------------------------------------
 
-8. **Analyse statique avec PHPStan**
+7. **Analyse statique avec PHPStan**
 
 Lancez l’analyse depuis la racine du projet :
 
