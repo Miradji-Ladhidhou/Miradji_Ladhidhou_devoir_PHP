@@ -8,17 +8,21 @@ Thumbs.db
 # Dossiers d'éditeurs
 .vscode/
 .idea/
-node_modules/   # au cas où tu aurais un peu de JS moderne
+
 
 # Configuration locale
 config/config.php
 
-# Base de données
-*.sqlite
-*.db
-*.sql
 
 # Caches ou uploads
 cache/
 uploads/
 sessions/
+
+/vendor/
+
+composer.lock
+
+
+# Node modules (dépendances npm)
+/node_modules/
