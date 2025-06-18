@@ -1,3 +1,7 @@
+-- Créer la base de données
+CREATE DATABASE IF NOT EXISTS App_covoiturage CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE App_covoiturage;
+
 -- table users
 CREATE TABLE users(
     id_users INT AUTO_INCREMENT PRIMARY KEY,
